@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HorusDrop | Design Criativo Impulsionado por IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #bc13fe;
+            --neon-blue: #0ff0fc;
+            --neon-pink: #ff44cc;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+        }
+        
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .neon-text-purple {
+            color: var(--neon-purple);
+            text-shadow: 0 0 5px var(--neon-purple), 0 0 10px var(--neon-purple);
+        }
+        
+        .neon-text-blue {
+            color: var(--neon-blue);
+            text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+        }
+        
+        .neon-text-pink {
+            color: var(--neon-pink);
+            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+        }
+        
+        .neon-border-purple {
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple), inset 0 0 5px var(--neon-purple);
+        }
+        
+        .neon-border-blue {
+            border: 2px solid var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue), inset 0 0 5px var(--neon-blue);
+        }
+        
+        .neon-border-pink {
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), inset 0 0 5px var(--neon-pink);
+        }
+        
+        .neon-glow-hover:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+            transition: text-shadow 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--darker-bg) 0%, #1a1a2e 100%);
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .testimonial-card {
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            font-size: 60px;
+            color: var(--neon-purple);
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(188, 19, 254, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(188, 19, 254, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(188, 19, 254, 0);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 gradient-bg border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="text-2xl font-bold neon-text-purple">HORUS<span class="neon-text-blue">DROP</span></span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="text-white hover:neon-text-purple px-3 py-2 rounded-md text-sm font-medium neon-glow-hover">Home</a>
+                        <a href="#about" class="text-white hover:neon-text-blue px-3 py-2 rounded-md text-sm font-medium neon-glow-hover">Sobre</a>
+                        <a href="#services" class="text-white hover:neon-text-pink px-3 py-2 rounded-md text-sm font-medium neon-glow-hover">Serviços</a>
+                        <a href="#portfolio" class="text-white hover:neon-text-purple px-3 py-2 rounded-md text-sm font-medium neon-glow-hover">Portfólio</a>
+                        <a href="#contact" class="text-white hover:neon-text-blue px-3 py-2 rounded-md text-sm font-medium neon-glow-hover">Contato</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden gradient-bg border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900">Home</a>
+                <a href="#about" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900">Sobre</a>
+                <a href="#services" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900">Serviços</a>
+                <a href="#portfolio" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900">Portfólio</a>
+                <a href="#contact" class="text-white block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-900">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 px-4 sm:px-6 lg:px-8 gradient-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        <span class="neon-text-purple">Design</span> <span class="neon-text-blue">Impulsionado</span> <span class="neon-text-pink">por IA</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                        Criamos identidades visuais únicas e impactantes para sua marca com o poder da inteligência artificial.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg text-white font-bold text-lg hover:opacity-90 transition duration-300 shadow-lg neon-border-purple pulse">
+                            Solicite seu orçamento
+                        </a>
+                        <a href="#portfolio" class="px-8 py-4 border-2 border-white rounded-lg text-white font-bold text-lg hover:bg-white hover:text-black transition duration-300">
+                            Ver Portfólio
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="relative floating">
+                        <img src="imagens/img1.png" alt="Design criado por IA" class="rounded-lg shadow-2xl neon-border-blue w-full max-w-lg mx-auto">
+                        <div class="absolute -bottom-5 -right-5 bg-black p-4 rounded-lg neon-border-pink">
+                            <p class="text-sm neon-text-pink">100% gerado por IA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 neon-text-blue">A <span class="neon-text-purple">HorusDrop</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Combinamos criatividade humana com o poder da inteligência artificial para entregar designs únicos em tempo recorde.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-8 rounded-lg neon-border-purple hover:neon-border-blue transition duration-300">
+                    <div class="text-4xl neon-text-purple mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 neon-text-blue">100% IA</h3>
+                    <p class="text-gray-300">
+                        Todos nossos designs são gerados por algoritmos de IA de última geração, garantindo originalidade e inovação.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-lg neon-border-blue hover:neon-border-pink transition duration-300">
+                    <div class="text-4xl neon-text-blue mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 neon-text-pink">Entrega Rápida</h3>
+                    <p class="text-gray-300">
+                        O processo tradicional leva semanas. Nós entregamos em dias, sem comprometer a qualidade.
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 p-8 rounded-lg neon-border-pink hover:neon-border-purple transition duration-300">
+                    <div class="text-4xl neon-text-pink mb-4">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 neon-text-purple">Iteração Ilimitada</h3>
+                    <p class="text-gray-300">
+                        Não gostou do resultado? Gere novas variações instantaneamente até encontrar o design perfeito.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-4 sm:px-6 lg:px-8 gradient-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 neon-text-pink">Nossos <span class="neon-text-blue">Serviços</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-pink-600 to-purple-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Oferecemos soluções completas de design para alavancar sua marca no mercado digital.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-purple hover:shadow-lg hover:shadow-purple-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-purple mr-4">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-purple">Logo Design</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Logotipos únicos e memoráveis gerados por IA, perfeitos para marcas que querem se destacar.
+                    </p>
+                    <div class="text-sm neon-text-blue">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 48h
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-blue hover:shadow-lg hover:shadow-blue-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-blue mr-4">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-blue">Vídeos Animados</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Animações impressionantes para redes sociais, explicação de produtos ou branding.
+                    </p>
+                    <div class="text-sm neon-text-pink">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 72h
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-pink hover:shadow-lg hover:shadow-pink-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-pink mr-4">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-pink">Estampas</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Designs exclusivos para camisetas, hoodies e produtos personalizados.
+                    </p>
+                    <div class="text-sm neon-text-purple">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 48h
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-purple hover:shadow-lg hover:shadow-purple-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-purple mr-4">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-purple">Flyers Digitais</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Artes impactantes para divulgação em redes sociais e impressos.
+                    </p>
+                    <div class="text-sm neon-text-blue">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 24h
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-blue hover:shadow-lg hover:shadow-blue-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-blue mr-4">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-blue">Identidade Visual</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Pacote completo com logo, paleta de cores, tipografia e diretrizes de uso.
+                    </p>
+                    <div class="text-sm neon-text-pink">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 5 dias
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-gray-900 p-8 rounded-lg neon-border-pink hover:shadow-lg hover:shadow-pink-500/20">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl neon-text-pink mr-4">
+                            <i class="fas fa-icons"></i>
+                        </div>
+                        <h3 class="text-xl font-bold neon-text-pink">Ilustrações</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Artes personalizadas para capas de álbum, livros, jogos e projetos criativos.
+                    </p>
+                    <div class="text-sm neon-text-purple">
+                        <i class="fas fa-clock mr-2"></i> Entrega em 72h
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 neon-text-purple">Nosso <span class="neon-text-blue">Portfólio</span></h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Alguns dos trabalhos que criamos para marcas inovadoras como a sua.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="portfolio-item rounded-lg overflow-hidden h-80">
+                    <img src="imagens/logotipo.png" alt="Logo Design" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold neon-text-purple mb-2">Nexus LTDA</h3>
+                        <p class="text-gray-300 mb-4">Logo Design</p>
+                        <!-- <a href="#" class="px-4 py-2 bg-purple-600 rounded text-white hover:bg-purple-700">Ver Detalhes</a> -->
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 2 -->
+                <div class="portfolio-item rounded-lg overflow-hidden h-80">
+                    <img src="imagens/camisa1.jpg" alt="T-shirt Design" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold neon-text-blue mb-2">Igaracy da Resenha</h3>
+                        <p class="text-gray-300 mb-4">Estampa para Camisetas</p>
+                        <!-- <a href="#" class="px-4 py-2 bg-blue-500 rounded text-white hover:bg-blue-600">Ver Detalhes</a> -->
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 3 -->
+                <div class="portfolio-item rounded-lg overflow-hidden h-80">
+                    <img src="imagens/flyer.png" alt="Flyer Design" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold neon-text-pink mb-2">Dol Pixels</h3>
+                        <p class="text-gray-300 mb-4">Flyer Digital</p>
+                        <!-- <a href="#" class="px-4 py-2 bg-pink-500 rounded text-white hover:bg-pink-600">Ver Detalhes</a> -->
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 4 -->
+                <div class="portfolio-item rounded-lg overflow-hidden h-80">
+                    <img src="imagens/identidadevisual.png" alt="Brand Identity" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold neon-text-purple mb-2">GLITCH Creative</h3>
+                        <p class="text-gray-300 mb-4">Identidade Visual</p>
+                        <!-- <a href="#" class="px-4 py-2 bg-purple-600 rounded text-white hover:bg-purple-700">Ver Detalhes</a> -->
+                    </div>
+                </div>
+                
+                <!-- Portfolio Item 6 -->
+                <div class="portfolio-item rounded-lg overflow-hidden h-80">
+                    <img src="imagens/ilustração.png" alt="Illustration" class="w-full h-full object-cover">
+                    <div class="portfolio-overlay">
+                        <h3 class="text-2xl font-bold neon-text-pink mb-2">Cosmic Dreams</h3>
+                        <p class="text-gray-300 mb-4">Ilustração Digital</p>
+                        <!-- <a href="#" class="px-4 py-2 bg-pink-500 rounded text-white hover:bg-pink-600">Ver Detalhes</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 gradient-bg">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4 neon-text-blue">O Que <span class="neon-text-pink">Dizem</span> Sobre Nós</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-pink-500 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Veja o feedback de clientes que confiaram na HorusDrop para criar suas identidades visuais.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-gray-900 p-8 rounded-lg neon-border-purple">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold neon-text-purple">Ana Carolina</h4>
+                            <p class="text-sm text-gray-400">@anacarolmakeup</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Fiquei impressionada com a qualidade do logo que criaram para minha marca de maquiagem. Recebi 5 opções incríveis em menos de 48h!"
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-gray-900 p-8 rounded-lg neon-border-blue">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold neon-text-blue">Ricardo Almeida</h4>
+                            <p class="text-sm text-gray-400">CEO @startupconnect</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Contratamos a HorusDrop para criar nossa identidade visual completa. O resultado superou todas expectativas e o processo foi extremamente rápido."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-gray-900 p-8 rounded-lg neon-border-pink">
+                    <div class="flex items-center mb-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold neon-text-pink">Juliana Santos</h4>
+                            <p class="text-sm text-gray-400">@julianafitness</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">
+                        "Precisava de artes para meu canal de fitness com urgência. A HorusDrop entregou exatamente o que eu imaginava em tempo recorde. Recomendo demais!"
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                <span class="neon-text-purple">Pronto</span> <span class="neon-text-blue">para</span> <span class="neon-text-pink">elevar</span> sua marca?
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Entre em contato agora mesmo e descubra como a inteligência artificial pode transformar sua identidade visual.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="https://wa.me/5511999999999" class="px-8 py-4 bg-green-600 rounded-lg text-white font-bold text-lg hover:bg-green-700 transition duration-300 flex items-center justify-center">
+                    <i class="fab fa-whatsapp text-2xl mr-3"></i> Fale pelo WhatsApp
+                </a>
+                <a href="https://instagram.com/horusdrop" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-500 rounded-lg text-white font-bold text-lg hover:opacity-90 transition duration-300 flex items-center justify-center">
+                    <i class="fab fa-instagram text-2xl mr-3"></i> Siga no Instagram
+                </a>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-gray-800">
+                <p class="text-gray-400">
+                    <i class="fas fa-envelope mr-2"></i> contato@horusdrop.com
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 sm:px-6 lg:px-8 gradient-bg border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start mb-4 md:mb-0">
+                    <span class="text-2xl font-bold neon-text-purple">HORUS<span class="neon-text-blue">DROP</span></span>
+                </div>
+                <!-- <div class="flex justify-center md:justify-end space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div> -->
+            </div>
+            <div class="mt-8 text-center md:text-left">
+                <p class="text-sm text-gray-400">
+                    &copy; 2025 HorusDrop. Todos os direitos reservados. 
+                    <span class="block md:inline">Design criado com inteligência artificial.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!document.getElementById('mobile-menu').classList.contains('hidden')) {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+        
+        // Add pulse animation to CTA button on hover
+        const ctaButton = document.querySelector('.pulse');
+        ctaButton.addEventListener('mouseenter', function() {
+            this.classList.add('animate-pulse');
+        });
+        ctaButton.addEventListener('mouseleave', function() {
+            this.classList.remove('animate-pulse');
+        });
+    </script>
+</body>
+</html>
